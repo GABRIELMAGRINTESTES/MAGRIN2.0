@@ -37,7 +37,7 @@ export default function PublicHeader() {
 
         {/* Logo + Nome */}
         <Link to="/loja" className="flex items-center space-x-2">
-          <img src={logo} alt="Logo" className="h-10 w-10 object-contain" />
+          <img src={logo} alt="Magrin Store Logo" className="h-10 w-10 object-contain" />
           <span className="text-xl font-bold text-primary">MAGRIN STORE</span>
         </Link>
 
