@@ -2,7 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { supabase } from '../services/supabase';
 import PublicHeader from '../components/PublicHeader';
-import { useCart } from '../context/CartContext';
+import { useFavorites } from '../context/FavoritesContext';
+import { FaStar, FaRegStar } from 'react-icons/fa';
 
 export default function ProdutoDetalhes() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ export default function ProdutoDetalhes() {
   const [categoria, setCategoria] = useState(null);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState(false);
-  const { adicionarAoCarrinho } = useCart();
+  const { adicionarAosFavoritos, removerDosFavoritos, verificarSeFavorito, favoritesItems } = useFavorites();
 
   useEffect(() => {
     const buscarProduto = async () => {
@@ -48,9 +49,20 @@ export default function ProdutoDetalhes() {
     buscarProduto();
   }, [id]);
 
-  const handleAdicionarCarrinho = () => {
+  const isFavorito = produto ? verificarSeFavorito(produto.id) : false;
+
+  const handleToggleFavorito = () => {
     if (!produto) return;
-    adicionarAoCarrinho(produto.id);
+    
+    if (isFavorito) {
+      // Encontrar o item nos favoritos e remover
+      const favoritoItem = favoritesItems.find(item => item.product_id === produto.id);
+      if (favoritoItem) {
+        removerDosFavoritos(favoritoItem.id);
+      }
+    } else {
+      adicionarAosFavoritos(produto.id);
+    }
   };
 
   return (
@@ -89,7 +101,7 @@ export default function ProdutoDetalhes() {
           {/* Detalhes */}
           <div className="space-y-4">
             <h1 className="text-2xl font-bold">{produto.nome}</h1>
-            <p className="text-xl text-indigo-600 font-semibold">
+            <p className="text-xl text-primary font-semibold">
               R$ {parseFloat(produto.preco).toFixed(2)}
             </p>
 
@@ -111,10 +123,24 @@ export default function ProdutoDetalhes() {
             )}
 
             <button
-              onClick={handleAdicionarCarrinho}
-              className="mt-4 px-6 py-3 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+              onClick={handleToggleFavorito}
+              className={`mt-4 px-6 py-3 rounded transition flex items-center justify-center space-x-2 ${
+                isFavorito 
+                  ? 'bg-yellow-500 text-white hover:bg-yellow-600' 
+                  : 'bg-primary text-white hover:bg-primary-dark'
+              }`}
             >
-              Adicionar ao Carrinho
+              {isFavorito ? (
+                <>
+                  <FaStar size={16} className="text-white" />
+                  <span>Remover dos Favoritos</span>
+                </>
+              ) : (
+                <>
+                  <FaRegStar size={16} />
+                  <span>Adicionar aos Favoritos</span>
+                </>
+              )}
             </button>
           </div>
         </div>

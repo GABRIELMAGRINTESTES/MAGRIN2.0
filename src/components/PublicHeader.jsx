@@ -1,14 +1,13 @@
 // src/components/PublicHeader.jsx
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { FaBars, FaSearch, FaShoppingCart } from 'react-icons/fa'
-import { useCart } from '../context/CartContext'
+import { FaBars, FaSearch, FaStar } from 'react-icons/fa'
+import { useFavorites } from '../context/FavoritesContext'
 import logo from '../assets/logo-loja.png'
 
 export default function PublicHeader() {
   const navigate = useNavigate()
-  const { cart = [] } = useCart()
-  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0)
+  const { totalFavoritos } = useFavorites()
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [query, setQuery] = useState('')
@@ -39,7 +38,7 @@ export default function PublicHeader() {
         {/* Logo + Nome */}
         <Link to="/loja" className="flex items-center space-x-2">
           <img src={logo} alt="Logo" className="h-10 w-10 object-contain" />
-          <span className="text-xl font-bold text-blue-700">MAGRIN STORE</span>
+          <span className="text-xl font-bold text-primary">MAGRIN STORE</span>
         </Link>
 
         {/* Busca desktop */}
@@ -65,7 +64,7 @@ export default function PublicHeader() {
               flex items-center justify-center
               h-10 w-12
               border-t border-b border-r border-gray-300
-              bg-indigo-600 hover:bg-indigo-700 text-white
+              bg-primary hover:bg-primary-dark text-white
               rounded-r
             "
           >
@@ -85,12 +84,12 @@ export default function PublicHeader() {
             <FaSearch size={20} />
           </button>
 
-          {/* Carrinho */}
-          <Link to="/loja/carrinho" className="relative p-2 text-gray-700">
-            <FaShoppingCart size={20} />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                {totalItems}
+          {/* Favoritos */}
+          <Link to="/loja/favoritos" className="relative p-2 text-gray-700 hover:text-yellow-500 transition-colors">
+            <FaStar size={20} />
+            {totalFavoritos > 0 && (
+              <span className="absolute -top-1 -right-1 bg-yellow-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {totalFavoritos}
               </span>
             )}
           </Link>
@@ -140,7 +139,7 @@ export default function PublicHeader() {
               flex items-center justify-center
               h-10 w-12
               border-t border-b border-r border-gray-300
-              bg-indigo-600 hover:bg-indigo-700 text-white
+              bg-primary hover:bg-primary-dark text-white
               rounded-r
             "
           >

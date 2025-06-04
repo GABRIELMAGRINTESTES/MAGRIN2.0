@@ -8,7 +8,7 @@ export default function NaoAutorizado() {
         <p className="mb-6">Você não tem permissão para acessar esta página.</p>
         <Link 
           to="/login" 
-          className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 inline-block"
+          className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark inline-block"
         >
           Voltar para o login
         </Link>

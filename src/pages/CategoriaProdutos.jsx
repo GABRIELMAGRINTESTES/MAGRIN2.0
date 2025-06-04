@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '../services/supabase';
 import PublicHeader from '../components/PublicHeader';
 import { Link } from 'react-router-dom';
@@ -16,11 +16,7 @@ export default function CategoriaProdutos() {
   const [gruposExpandido, setGruposExpandido] = useState({});
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    buscarProdutosDaCategoria();
-  }, [id]);
-
-  const buscarProdutosDaCategoria = async () => {
+  const buscarProdutosDaCategoria = useCallback(async () => {
     setLoading(true);
 
     const { data: catData, error: catError } = await supabase
@@ -61,7 +57,11 @@ export default function CategoriaProdutos() {
     }
 
     setLoading(false);
-  };
+  }, [id]); // Adiciona id como dependência do useCallback
+
+  useEffect(() => {
+    buscarProdutosDaCategoria();
+  }, [buscarProdutosDaCategoria]); // Agora useEffect depende apenas da função memoizada
 
   const toggleExpandirGrupo = (grupo) => {
     setGruposExpandido((prev) => ({
@@ -107,7 +107,7 @@ export default function CategoriaProdutos() {
                           />
                           <div className="p-2">
                             <h3 className="text-sm font-semibold truncate">{produto.nome}</h3>
-                            <p className="text-indigo-600 font-bold text-sm">
+                            <p className="text-primary font-bold text-sm">
                               R$ {parseFloat(produto.preco).toFixed(2)}
                             </p>
                           </div>
@@ -144,7 +144,7 @@ export default function CategoriaProdutos() {
                               />
                               <div className="p-2">
                                 <h3 className="text-sm font-semibold truncate">{produto.nome}</h3>
-                                <p className="text-indigo-600 font-bold text-sm">
+                                <p className="text-primary font-bold text-sm">
                                   R$ {parseFloat(produto.preco).toFixed(2)}
                                 </p>
                               </div>
@@ -156,7 +156,7 @@ export default function CategoriaProdutos() {
                       <div className="mt-2 text-right">
                         <button
                           onClick={() => toggleExpandirGrupo(grupo)}
-                          className="text-sm text-indigo-600 hover:underline"
+                          className="text-sm text-primary hover:underline"
                         >
                           Ver mais &darr;
                         </button>
@@ -168,7 +168,7 @@ export default function CategoriaProdutos() {
                     <div className="mt-2 text-right">
                       <button
                         onClick={() => toggleExpandirGrupo(grupo)}
-                        className="text-sm text-indigo-600 hover:underline"
+                        className="text-sm text-primary hover:underline"
                       >
                         Ver menos &uarr;
                       </button>

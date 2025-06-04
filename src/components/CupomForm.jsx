@@ -164,7 +164,7 @@ export default function CupomForm({ cupom, onClose, onSave }) {
                 name="code"
                 value={formData.code}
                 onChange={handleChange}
-                className={`block w-full px-3 py-2 border ${errors.code ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                className={`block w-full px-3 py-2 border ${errors.code ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary`}
                 placeholder="EXEMPLO20"
                 required
               />
@@ -180,7 +180,7 @@ export default function CupomForm({ cupom, onClose, onSave }) {
                 name="discount_type"
                 value={formData.discount_type}
                 onChange={handleChange}
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
               >
                 <option value="percent">Percentual (%)</option>
                 <option value="fixed">Valor Fixo (R$)</option>
@@ -206,7 +206,7 @@ export default function CupomForm({ cupom, onClose, onSave }) {
                   step={formData.discount_type === 'percent' ? '1' : '0.01'}
                   min="0"
                   max={formData.discount_type === 'percent' ? '100' : undefined}
-                  className={`block w-full ${formData.discount_type === 'fixed' ? 'pl-10' : ''} px-3 py-2 border ${errors.discount_value ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                  className={`block w-full ${formData.discount_type === 'fixed' ? 'pl-10' : ''} px-3 py-2 border ${errors.discount_value ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary`}
                   required
                 />
                 {formData.discount_type === 'percent' && (
@@ -230,7 +230,7 @@ export default function CupomForm({ cupom, onClose, onSave }) {
                   value={formData.usage_limit}
                   onChange={handleChange}
                   min="1"
-                  className={`block w-full px-3 py-2 border ${errors.usage_limit ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                  className={`block w-full px-3 py-2 border ${errors.usage_limit ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary`}
                   placeholder="Ilimitado se vazio"
                 />
                 {errors.usage_limit && <p className="mt-1 text-sm text-red-600">{errors.usage_limit}</p>}
@@ -252,7 +252,7 @@ export default function CupomForm({ cupom, onClose, onSave }) {
                     onChange={handleChange}
                     step="0.01"
                     min="0"
-                    className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                     placeholder="Sem mínimo se vazio"
                   />
                 </div>
@@ -270,7 +270,7 @@ export default function CupomForm({ cupom, onClose, onSave }) {
                 name="expiration_date"
                 value={formData.expiration_date}
                 onChange={handleChange}
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
               />
             </div>
 
@@ -282,7 +282,7 @@ export default function CupomForm({ cupom, onClose, onSave }) {
                   name="is_active"
                   checked={formData.is_active}
                   onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
                 />
                 <label htmlFor="is_active" className="ml-2 block text-sm text-gray-700">
                   Cupom ativo
@@ -295,14 +295,14 @@ export default function CupomForm({ cupom, onClose, onSave }) {
                 type="button"
                 onClick={onClose}
                 disabled={loading}
-                className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="inline-flex justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
                 {loading ? (
                   <>

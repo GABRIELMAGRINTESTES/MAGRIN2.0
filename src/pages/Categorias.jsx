@@ -71,7 +71,7 @@ export default function Categorias() {
             <h1 className="text-2xl font-bold">Categorias</h1>
             <button
               onClick={abrirNova}
-              className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
+              className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition"
             >
               + Nova Categoria
             </button>

@@ -95,7 +95,7 @@ export default function Usuarios() {
 
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
             </div>
           ) : (
             <div className="bg-white rounded-lg shadow overflow-hidden">
@@ -121,7 +121,7 @@ export default function Usuarios() {
                               onChange={(e) => atualizarRole(user.id, e.target.value)}
                               className={`block w-full pl-3 pr-10 py-2 text-base border ${
                                 user.role ? 'border-gray-300' : 'border-red-300'
-                              } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md`}
+                              } focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md`}
                               disabled={perfilAtual?.role === 'moderador'}
                             >
                               <option value="">Selecione um cargo</option>

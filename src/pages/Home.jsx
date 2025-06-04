@@ -80,7 +80,7 @@ export default function Home() {
                 <h2 className="text-xl font-bold">{categoria.nome}</h2>
                 <Link
                   to={`/loja/categorias/${categoria.id}`}
-                  className="text-sm text-indigo-600 hover:underline"
+                  className="text-sm text-primary hover:underline"
                 >
                   Ver todos &rarr;
                 </Link>
@@ -114,7 +114,7 @@ export default function Home() {
                       />
                       <div className="p-2">
                         <h3 className="text-sm font-semibold truncate">{produto.nome}</h3>
-                        <p className="text-indigo-600 font-bold text-sm">
+                        <p className="text-primary font-bold text-sm">
                           R$ {parseFloat(produto.preco).toFixed(2)}
                         </p>
                       </div>

@@ -32,7 +32,7 @@ export default function Carrinho() {
                   />
                   <div>
                     <h2 className="font-semibold">{item.produto?.nome}</h2>
-                    <p className="text-indigo-600 font-bold">
+                    <p className="text-primary font-bold">
                       R$ {parseFloat(item.produto?.preco).toFixed(2)}
                     </p>
                   </div>
