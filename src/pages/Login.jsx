@@ -27,7 +27,7 @@ export default function Login() {
 
       if (error) throw error;
 
-      navigate('/dashboard');
+      navigate('/loja');
     } catch (error) {
       Swal.fire({
         title: 'Erro',
