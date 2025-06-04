@@ -53,7 +53,7 @@ export default function Login() {
 
       const { error: profileError } = await supabase
         .from('profiles')
-        .update({ full_name: regName })
+        .update({ name: regName })
         .eq('id', user.id);
 
       if (profileError) throw profileError;

@@ -14,12 +14,12 @@ export default function Header() {
       if (user) {
         const { data } = await supabase
           .from('profiles')
-          .select('full_name')
+          .select('name')
           .eq('id', user.id)
           .single();
         
-        if (data?.full_name) {
-          setUserName(data.full_name);
+        if (data?.name) {
+          setUserName(data.name);
         } else {
           setUserName(user.email);
         }
